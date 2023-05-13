@@ -1,4 +1,8 @@
 import Image from 'next/image';
+import { HiArrowNarrowRight } from 'react-icons/hi'; 
+
+import { Button } from '@/app/components/button/';
+import { TechBadge } from '@/app/components/tech-badge';
 
 export const HeroSection = () => {
   return (
@@ -10,12 +14,17 @@ export const HeroSection = () => {
 
           <p className="text-gray-400 my-6 text-sm sm:text-base">Olá, meu nome é Lucas Machado e 23 anos e atualmente curso Análise e Desenvolvimento de Sistemas pela UFPR. Sou um desenvolvedor full-stack, e meu objetivo nesse projeto é estudar next.js e tailwaind enquanto crio um portifolio para o meu currículo.</p>
           
-          <div>
-            techs
+          <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
+            {Array.from({ length: 7 }).map((_, index) => (
+              <TechBadge name="Next.js"></TechBadge>
+            ))}
           </div>
 
           <div>
-            contato
+            <Button className="shadow-button"> 
+              Entre em contato 
+              <HiArrowNarrowRight size={18} />
+            </Button>
           </div>
         </div>
 
