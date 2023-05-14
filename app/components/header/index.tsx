@@ -1,11 +1,10 @@
 'use client'
 
-import Image from "next/image";
 import Link from "next/link";
 
 import { NavItem } from "./nav-item";
 
-const NAV_ITENS = [
+const NAV_ITEMS = [
   {
     label: 'Home',
     href: '/'
@@ -24,7 +23,7 @@ export const Header = () => {
           <h1 className="text-2xl">Lukita</h1>
         </Link>
         <nav className="flex items-center gap-4 sm:gap-10">
-          {NAV_ITENS.map(item => (
+          {NAV_ITEMS.map(item => (
             // {...item} is equal to label={label} href={href}
             <NavItem {...item} key={item.label} />
           ))}

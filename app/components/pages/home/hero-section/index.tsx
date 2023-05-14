@@ -43,7 +43,7 @@ export const HeroSection = () => {
             </Button>
 
             <div className="text-gray-600 text-2xl flex items-center h-20 gap-3">
-              {MOCK_CONTACTS.map((contact, index)=> (
+              {MOCK_CONTACTS.map((contact, index) => (
                 <a 
                   href={contact.url}
                   key={`contact-${index}`}
