@@ -25,7 +25,7 @@ export const ProjectCard = () => {
             alt=""
             src="/images/icons/project-title-icon.svg"
           />
-          LeadSoft Project
+          Nome do Projeto
         </h3>
 
         <p className="text-gray-400 my-6">

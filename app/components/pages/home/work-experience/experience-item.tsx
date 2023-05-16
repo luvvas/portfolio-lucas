@@ -25,7 +25,7 @@ export const ExperienceItem = () => {
             target="_blank"
             className="text-gray-500 hover:text-emerald-500 transition-colors"
           >
-            @ Leadsoft
+            @ Nome da Empresa
           </a>
           <h4 className="text-gray-400">Desenvolvedor C# ASP.NET</h4>
           <span className="text-gray-500">
