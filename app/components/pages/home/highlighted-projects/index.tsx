@@ -1,17 +1,16 @@
-import { HiArrowNarrowRight } from 'react-icons/hi';
+import { HiArrowNarrowRight } from 'react-icons/hi'
 
-import { SectionTitle } from '@/app/components/section-title';
-import { HorizontalDivider } from '@/app/components/divider/horizontal';
-import { Link } from '@/app/components/link';
+import { SectionTitle } from '@/app/components/section-title'
+import { HorizontalDivider } from '@/app/components/divider/horizontal'
+import { Link } from '@/app/components/link'
 
-import { ProjectCard } from './project-card';
-
+import { ProjectCard } from './project-card'
 
 export const HighlightedProjects = () => {
   return (
     <section className="container py-16">
       <SectionTitle subtitle="destaques" title="Projetos"></SectionTitle>
-      <HorizontalDivider className="mb-16"/>
+      <HorizontalDivider className="mb-16" />
 
       <div>
         <ProjectCard />
