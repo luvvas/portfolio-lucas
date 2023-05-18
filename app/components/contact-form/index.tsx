@@ -19,6 +19,10 @@ const contactFormSchema = z.object({
 type ContactFormData = z.infer<typeof contactFormSchema>
 
 export const ContactForm = () => {
+  // Usa-se obrigatoriamente dois parâmetros do useForm(), o handleSubmit() e o
+  // register();
+  // Usa-se o zodResolver() com um parâmetro de schema para validar os dados,
+  // também passando uma tipagem para o hook Form;
   const { handleSubmit, register } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   })
@@ -38,11 +42,15 @@ export const ContactForm = () => {
 
         <form
           className="mt-12 w-full flex flex-col gap-4"
+          // O primeiro parâmetro handleSubmit() do  useForm necessita ser
+          // utilizado dentro do FORM
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
             placeholder="Nome"
             className="w-full h-14 bg-gray-800 rounded-lg placeholder:text-gray-400 text-gray-50 p-4 focus:outline-none focus:ring-2 ring-emerald-600"
+            // O segundo parâmetro register() do  useForm necessita ser
+            // utilizado dentro do INPUT
             {...register('name')}
           />
           <input
