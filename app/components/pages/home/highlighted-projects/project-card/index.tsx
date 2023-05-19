@@ -12,7 +12,7 @@ export const ProjectCard = () => {
           width={420}
           height={289}
           src="/images/card-bg.png"
-          alt="Thumbnail do project em C#"
+          alt="Thumbnail do projeto"
           className="opacity-20 w-full h-[200px] sm:h-[300px] lg:w-[420px] lg:min-h-[200px] object-cover rounded-lg"
         />
       </div>
