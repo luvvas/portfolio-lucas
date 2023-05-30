@@ -41,23 +41,37 @@ const getPageData = async (): Promise<HomePageData> => {
           }
         }
       }
+      workExperiences {
+        companyLogo {
+          url
+        }
+        role
+        companyName
+        companyUrl
+        startDate
+        endDate
+        description {
+          raw
+        }
+        technologies {
+          name
+        }
+      }
     }
   `
 
-  return fetchHygraphQuery(query, 60 * 60 * 24)
+  return fetchHygraphQuery(query, 60)
 }
 
 export default async function Home() {
-  const { page: pageData } = await getPageData()
-
-  console.log(pageData.knownTechs)
+  const { page: pageData, workExperiences } = await getPageData()
 
   return (
     <>
       <HeroSection homeInfo={pageData} />
       <KnownTechs techs={pageData.knownTechs} />
       <HighlightedProjects projects={pageData.highlightProjects} />
-      <WorkExperience />
+      <WorkExperience experiences={workExperiences} />
     </>
   )
 }
