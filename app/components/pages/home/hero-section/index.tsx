@@ -2,27 +2,20 @@
 
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
-import { TbBrandGithub, TbBrandLinkedin, TbBrandWhatsapp } from 'react-icons/tb'
 
 import { Button } from '@/app/components/button/'
 import { TechBadge } from '@/app/components/tech-badge'
 
-const MOCK_CONTACTS = [
-  {
-    url: 'https://github.com.br',
-    icon: <TbBrandGithub />,
-  },
-  {
-    url: 'https://linkedin.com.br',
-    icon: <TbBrandLinkedin />,
-  },
-  {
-    url: 'https://whatsapp.com.br',
-    icon: <TbBrandWhatsapp />,
-  },
-]
+import { RichText } from '@/app/components/rich-text'
 
-export const HeroSection = () => {
+import { HomePageInfo } from '@/app/types/page-info'
+import { CMSIcon } from '@/app/components/cms-icon'
+
+type HomeSectionProps = {
+  homeInfo: HomePageInfo
+}
+
+export const HeroSection = ({ homeInfo }: HomeSectionProps) => {
   const handleContact = () => {
     const contactSection = document.querySelector('#contact')
     if (contactSection) {
@@ -37,16 +30,13 @@ export const HeroSection = () => {
           <p className="font-mono text-emerald-400">Olá, meu nome é</p>
           <h2 className="text-4xl font-medium mt-2">Lucas Machado</h2>
 
-          <p className="text-gray-400 my-6 text-sm sm:text-base">
-            Olá, meu nome é Lucas Machado e 23 anos e atualmente curso Análise e
-            Desenvolvimento de Sistemas pela UFPR. Sou um desenvolvedor
-            full-stack, e meu objetivo nesse projeto é estudar next.js e
-            tailwaind enquanto crio um portifolio para o meu currículo.
-          </p>
+          <div className="text-gray-400 my-6 text-sm sm:text-base">
+            <RichText content={homeInfo.introduction.raw}/>
+          </div>
 
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
-            {Array.from({ length: 7 }).map((_, index) => (
-              <TechBadge name="Next.js"></TechBadge>
+            {homeInfo.technologies.map((tech) => (
+              <TechBadge name={tech.name} />
             ))}
           </div>
 
@@ -57,14 +47,15 @@ export const HeroSection = () => {
             </Button>
 
             <div className="text-gray-600 text-2xl flex items-center h-20 gap-3">
-              {MOCK_CONTACTS.map((contact, index) => (
+              {homeInfo.socials.map((contact, index) => (
                 <a
                   href={contact.url}
                   key={`contact-${index}`}
                   target="_blank"
                   className="hover:text-gray-100 transition-colors"
+                  rel="noreferrer"
                 >
-                  {contact.icon}
+                  <CMSIcon icon={contact.iconSvg} />
                 </a>
               ))}
             </div>
@@ -74,7 +65,7 @@ export const HeroSection = () => {
         <Image
           width={420}
           height={404}
-          src="/images/profile-pic.jpg"
+          src={homeInfo.profilePicture.url}
           alt="Foto de perfil"
           className="w-[300px] h-[300px] lg:w-[420px] lg:h-[404px] mb-6 lg:mb-0 shadow-2xl rounded-lg object-cover"
         />
