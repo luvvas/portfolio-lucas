@@ -4,15 +4,21 @@ import { HiArrowNarrowRight } from 'react-icons/hi'
 import { TechBadge } from '@/app/components/tech-badge'
 import { Link } from '@/app/components/link'
 
-export const ProjectCard = () => {
+import { Project } from '@/app/types/projects'
+
+type ProjectCardProps = {
+  project: Project
+}
+
+export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div className="flex gap-6 lg:gap-12 flex-col lg:flex-row">
-      <div className="w-full h-[full]">
+      <div className="w-[590px] h-[300px]">
         <Image
           width={420}
           height={289}
-          src="/images/card-bg.png"
-          alt="Thumbnail do projeto"
+          src={project.thumbnail.url}
+          alt={`Thumbnail do projeto ${project.title}`}
           className="opacity-20 w-full h-[200px] sm:h-[300px] lg:w-[420px] lg:min-h-[200px] object-cover rounded-lg"
         />
       </div>
@@ -25,26 +31,20 @@ export const ProjectCard = () => {
             alt=""
             src="/images/icons/project-title-icon.svg"
           />
-          Nome do Projeto
+          {project.title}
         </h3>
 
         <p className="text-gray-400 my-6">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-          reiciendis rem facilis alias provident quae laborum magnam inventore
-          molestias, eveniet vel, voluptatibus fugit corporis corrupti tempora
-          optio quo in? Impedit possimus veritatis blanditiis ad veniam
-          consectetur, fuga eveniet repellat quidem!
+          {project.shortDescription}
         </p>
 
         <div className="flex gap-x-2 flex-wrap-mb-8 lg:max-w-[350px]">
-          <TechBadge name="C#" />
-          <TechBadge name="C#" />
-          <TechBadge name="C#" />
-          <TechBadge name="C#" />
-          <TechBadge name="C#" />
+          {project.technologies.map(tech => (
+            <TechBadge key={`${project.title}-tech-${tech.name}`} name={tech.name} />
+          ))}
         </div>
 
-        <Link href="/project/leadsoft" className="pt-6">
+        <Link href={`/project/${project.slug}`} className="pt-6">
           Ver Projeto
           <HiArrowNarrowRight />
         </Link>
