@@ -2,7 +2,9 @@ import { PageIntroduction } from '../components/pages/projects/page-introduction
 import { fetchHygraphQuery } from '../utils/fetch-hygraph-query'
 import { ProjectsList } from './projects-list'
 
-const getPageData = async () => {
+import { ProjectsPageData } from '../types/page-info'
+
+const getPageData = async (): Promise<ProjectsPageData> => {
   const query = `
     query ProjectsQuery {
       projects {
@@ -28,7 +30,7 @@ export default async function Projects() {
   return (
     <>
       <PageIntroduction />
-      <ProjectsList />
+      <ProjectsList projects={projects} />
     </>
   )
 }
