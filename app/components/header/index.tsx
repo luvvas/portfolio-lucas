@@ -20,7 +20,7 @@ export const Header = () => {
     <header className="absolute top-0 w-full z-10 h-24 flex items-center justify-center">
       <div className="container flex items-center justify-between">
         <Link href="/">
-          <h1 className="text-2xl">Lukita</h1>
+          <h1 className="text-2xl">L</h1>
         </Link>
         <nav className="flex items-center gap-4 sm:gap-10">
           {NAV_ITEMS.map(item => (

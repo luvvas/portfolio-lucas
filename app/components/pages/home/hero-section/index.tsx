@@ -36,7 +36,7 @@ export const HeroSection = ({ homeInfo }: HomeSectionProps) => {
 
           <div className="flex flex-wrap gap-x-2 gap-y-3 lg:max-w-[340px]">
             {homeInfo.technologies.map((tech) => (
-              <TechBadge name={tech.name} />
+              <TechBadge key={tech.name} name={tech.name} />
             ))}
           </div>
 

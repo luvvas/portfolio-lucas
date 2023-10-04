@@ -20,7 +20,7 @@ export const ProjectDetails = ({ project }: ProjectDetailsProps) => {
       <div
         className="absolute inset-0 z-[-1]"
         style={{
-          background: `url(/images/hero-bg.png) no-repeat center/cover, url(${project.pageThumbnail.url}) no-repeat center/cover`,
+          background: `url(/images/hero-bg.png) no-repeat center/cover, linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${project.pageThumbnail.url}) no-repeat center/cover`,
         }}
       />
 
