@@ -4,6 +4,10 @@ import { ProjectsList } from './projects-list'
 
 import { ProjectsPageData } from '../types/page-info'
 
+export const metadata = {
+  title: 'Projetos'
+}
+
 const getPageData = async (): Promise<ProjectsPageData> => {
   const query = `
     query ProjectsQuery {

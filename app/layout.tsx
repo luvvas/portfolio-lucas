@@ -7,6 +7,13 @@ import { ContactForm } from './components/contact-form'
 import { Footer } from './components/footer'
 import { BackToTop } from './components/back-to-top'
 
+export const metadata = {
+  title: {
+    default: "Home",
+    template: "%s | Lucas"
+  }
+}
+
 const inter = Inter({
   variable: '--font-inter',
   subsets: ['latin'],
