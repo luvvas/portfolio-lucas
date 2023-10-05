@@ -1,6 +1,7 @@
 'use client'
 
 import axios from 'axios'
+import toast from 'react-hot-toast'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -24,16 +25,17 @@ export const ContactForm = () => {
   // register();
   // Usa-se o zodResolver() com um parâmetro de schema para validar os dados,
   // também passando uma tipagem para o hook Form;
-  const { handleSubmit, register, reset } = useForm<ContactFormData>({
+  const { handleSubmit, register, reset, formState: { isSubmitting } } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   })
 
   const onSubmit = async (data: ContactFormData) => {
     try {
       await axios.post("/api/contact", data)
+      toast.success("Mensagem enviada com sucesso!")
       reset()
     } catch {
-      alert('erro')
+      toast.error("Ocorreu um erro ao enviar a mensagem. Tente novamente.")
     }
   }
 
@@ -75,7 +77,7 @@ export const ContactForm = () => {
             {...register('message')}
           />
 
-          <Button className="mt-6">
+          <Button className="mt-6" disabled={isSubmitting}>
             Enviar mensagem
             <HiArrowNarrowRight size={18} />
           </Button>
