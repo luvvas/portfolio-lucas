@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 
@@ -5,14 +7,27 @@ import { TechBadge } from '@/app/components/tech-badge'
 import { Link } from '@/app/components/link'
 
 import { Project } from '@/app/types/projects'
+import { motion } from 'framer-motion'
 
 type ProjectCardProps = {
   project: Project
 }
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
+  const animProps = {
+    initial: { opacity: 0, y: 50 },
+    whileInView: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: 50 }
+  }
+
   return (
-    <div className="flex gap-6 lg:gap-12 flex-col lg:flex-row">
+    <motion.div 
+      className="flex gap-6 lg:gap-12 flex-col lg:flex-row"
+      initial={{ opacity: 0, y: 100 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 100 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="w-full h-[200px] sm:h-[300px] lg:w-[420px] lg:min-h-full">
         <Image
           width={420}
@@ -49,6 +64,6 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           <HiArrowNarrowRight />
         </Link>
       </div>
-    </div>
+    </motion.div>
   )
 }
