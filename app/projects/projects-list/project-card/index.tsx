@@ -6,7 +6,7 @@ type ProjectCardProps = {
   project: Project
 }
 
-export const ProjectCard = ({ project }:ProjectCardProps ) => {
+export const ProjectCard = ({ project }:ProjectCardProps) => {
   const technologies = project.technologies.map(x => x.name).join(', ')
 
   return (
