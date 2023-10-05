@@ -2,6 +2,7 @@
 
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { motion } from 'framer-motion'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,6 +11,7 @@ import { SectionTitle } from '../section-title'
 import { Button } from '../button'
 
 import { HiArrowNarrowRight } from 'react-icons/hi'
+import { fadeUpAnimation } from '@/app/lib/animations'
 
 // Define um schema para validação de dados
 const contactFormSchema = z.object({
@@ -51,11 +53,12 @@ export const ContactForm = () => {
           className="items-center text-center"
         />
 
-        <form
+        <motion.form
           className="mt-12 w-full flex flex-col gap-4"
           // O primeiro parâmetro handleSubmit() do  useForm necessita ser
           // utilizado dentro do FORM
           onSubmit={handleSubmit(onSubmit)}
+          {...fadeUpAnimation}
         >
           <input
             placeholder="Nome"
@@ -81,7 +84,7 @@ export const ContactForm = () => {
             Enviar mensagem
             <HiArrowNarrowRight size={18} />
           </Button>
-        </form>
+        </motion.form>
       </div>
     </section>
   )
