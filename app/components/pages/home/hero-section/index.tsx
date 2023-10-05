@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { HiArrowNarrowRight } from 'react-icons/hi'
 
 import { Button } from '@/app/components/button/'
@@ -26,7 +27,13 @@ export const HeroSection = ({ homeInfo }: HomeSectionProps) => {
   return (
     <section className="w-full lg:h-[755px] bg-hero-image bg-cover bg-center bg-no-repeat flex flex-col justify-end pb-10 sm:pb-32 py-32 lb:pb-[110px]">
       <div className="container flex justify-between flex-col-reverse lg:flex-row">
-        <div className="w-full lg:max-w-[530px]">
+        <motion.div 
+          className="w-full lg:max-w-[530px]"
+          initial={{ opacity: 0, x: -100 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -100 }}
+          transition={{ duration: 0.5 }}
+        >
           <p className="font-mono text-emerald-400">Olá, meu nome é</p>
           <h2 className="text-4xl font-medium mt-2">Lucas Machado</h2>
 
@@ -60,7 +67,7 @@ export const HeroSection = ({ homeInfo }: HomeSectionProps) => {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         <Image
           width={420}
