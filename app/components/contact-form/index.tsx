@@ -1,5 +1,6 @@
 'use client'
 
+import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -23,12 +24,17 @@ export const ContactForm = () => {
   // register();
   // Usa-se o zodResolver() com um parâmetro de schema para validar os dados,
   // também passando uma tipagem para o hook Form;
-  const { handleSubmit, register } = useForm<ContactFormData>({
+  const { handleSubmit, register, reset } = useForm<ContactFormData>({
     resolver: zodResolver(contactFormSchema),
   })
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log(data)
+  const onSubmit = async (data: ContactFormData) => {
+    try {
+      await axios.post("/api/contact", data)
+      reset()
+    } catch {
+      alert('erro')
+    }
   }
 
   return (
