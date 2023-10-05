@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 import { differenceInMonths, differenceInYears, format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
@@ -6,6 +9,7 @@ import { TechBadge } from '@/app/components/tech-badge'
 import { RichText } from '@/app/components/rich-text'
 
 import { WorkExperience as IWorkExperience } from '@/app/types/work-experience'
+import { techBadgeAnimation } from '@/app/lib/animations'
 
 type ExperienceItemProps = {
   experience: IWorkExperience
@@ -35,7 +39,13 @@ export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
 
 
   return (
-    <div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10">
+    <motion.div 
+      className="grid grid-cols-[40px,1fr] gap-4 md:gap-10"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 50 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="flex flex-col items-center">
         <div className="rounded-full border border-gray-500 p-0.5">
           <Image
@@ -70,12 +80,17 @@ export const ExperienceItem = ({ experience }: ExperienceItemProps) => {
             Competências
           </p>
           <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w-[350px] mb-8">
-            {experience.technologies.map((tech) => (
-              <TechBadge key={`experience-${experience.companyName}-tech-${tech.name}`} name={tech.name} />
+            {experience.technologies.map((tech, i) => (
+              <TechBadge 
+                key={`experience-${experience.companyName}-tech-${tech.name}`} 
+                name={tech.name} 
+                {...techBadgeAnimation}
+                transition={{ duration: 0.2, delay: i * 0.1 }}
+              />
             ))}
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
